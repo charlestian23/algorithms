@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae87316a-2715-4beb-9a02-3c132231577d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Sort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HelloWorld.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +30,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DivideAndConquer">
+    <configuration name="DivideAndConquer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DivideAndConquer" />
+      <module name="algorithms" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Sort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Sort" />
       <module name="algorithms" />
@@ -42,6 +47,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DivideAndConquer" />
         <item itemvalue="Application.Sort" />
       </list>
     </recent_temporary>
@@ -55,7 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652725575827</updated>
       <workItem from="1652725576803" duration="72000" />
-      <workItem from="1652725767324" duration="2780000" />
+      <workItem from="1652725767324" duration="4932000" />
     </task>
     <servers />
   </component>
