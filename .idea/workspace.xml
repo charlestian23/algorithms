@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae87316a-2715-4beb-9a02-3c132231577d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Graph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GraphAlgorithms.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,10 +31,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hackerrank" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager" selected="Application.DivideAndConquer">
+  <component name="RunManager" selected="Application.GraphAlgorithms">
     <configuration name="DivideAndConquer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DivideAndConquer" />
+      <module name="algorithms" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphAlgorithms" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GraphAlgorithms" />
       <module name="algorithms" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -47,6 +58,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GraphAlgorithms" />
         <item itemvalue="Application.DivideAndConquer" />
         <item itemvalue="Application.Sort" />
       </list>
@@ -61,7 +73,12 @@
       <option name="presentableId" value="Default" />
       <updated>1652725575827</updated>
       <workItem from="1652725576803" duration="72000" />
-      <workItem from="1652725767324" duration="4932000" />
+      <workItem from="1652725767324" duration="5746000" />
+      <workItem from="1652803205062" duration="1184000" />
+      <workItem from="1652890481953" duration="956000" />
+      <workItem from="1652907090895" duration="599000" />
+      <workItem from="1653147365414" duration="649000" />
+      <workItem from="1653499544907" duration="4881000" />
     </task>
     <servers />
   </component>
@@ -78,5 +95,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
