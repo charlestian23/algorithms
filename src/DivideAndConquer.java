@@ -47,6 +47,24 @@ public class DivideAndConquer
             return selection(s_right, k - s_left.size() - s_v.size());
     }
 
+    public static int binarySearch(int[] array, int target)
+    {
+        return binarySearchHelper(array, target, 0, array.length - 1);
+    }
+
+    private static int binarySearchHelper(int[] array, int target, int low, int high)
+    {
+        if (low > high)
+            return -1;
+
+        int mid = (low + high) / 2;
+        if (array[mid] == target)
+            return mid;
+        else if (array[mid] > target)
+            return binarySearchHelper(array, target, low, mid - 1);
+        return binarySearchHelper(array, target, mid + 1, high);
+    }
+
     public static void main(String[] args)
     {
         int[] randomNumbers = new int[10];
@@ -54,15 +72,19 @@ public class DivideAndConquer
         for (int i = 0; i < randomNumbers.length; i++)
             randomNumbers[i] = random.nextInt(100);
 
-        final String format = "%15s\t%s";
-        System.out.println(String.format(format, "Unsorted:", Arrays.toString(randomNumbers)));
+        System.out.println("Unsorted: " + Arrays.toString(randomNumbers));
 
-        System.out.println(String.format(format, "Median:", DivideAndConquer.findMedian(randomNumbers)));
+        System.out.println("Median: " + DivideAndConquer.findMedian(randomNumbers));
 
+        System.out.println("nth Largest Value:");
         for (int i = 1; i <= randomNumbers.length; i++)
-            System.out.println(String.format(format, "k = " + i + ":", DivideAndConquer.getNthLargestValue(randomNumbers, i)));
+            System.out.println("\tn = " + i + ":\t" + DivideAndConquer.getNthLargestValue(randomNumbers, i));
 
         DivideAndConquer.quickSort(randomNumbers);
-        System.out.println(String.format(format, "Quick Sort:", Arrays.toString(randomNumbers)));
+        System.out.println("Quick Sort:" + Arrays.toString(randomNumbers));
+
+        int randomIndex = random.nextInt(randomNumbers.length);
+        System.out.println("Binary Searching for " + randomIndex + ": " + DivideAndConquer.binarySearch(randomNumbers, randomNumbers[randomIndex]));
+        System.out.println("Binary Searching for -100: " + DivideAndConquer.binarySearch(randomNumbers, -100));
     }
 }
