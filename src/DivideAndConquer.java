@@ -47,6 +47,18 @@ public class DivideAndConquer
             return selection(s_right, k - s_left.size() - s_v.size());
     }
 
+    /**
+     * Binary Search
+     *
+     * The time complexity is O(log n).
+     *
+     * Reference: https://www.geeksforgeeks.org/binary-search/
+     *
+     * @param array
+     * @param target
+     * @return          The index of the target in the array; if the target does
+     *                  not exist in the array, returns -1
+     */
     public static int binarySearch(int[] array, int target)
     {
         return binarySearchHelper(array, target, 0, array.length - 1);
