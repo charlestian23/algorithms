@@ -64,4 +64,17 @@ public class Graph<T extends Comparable<T>>
         if (this.isUndirectedGraph)
             this.graph.get(node2).add(node1);
     }
+
+    public String toString()
+    {
+        String str = "";
+        for (T node : this.getNodes())
+        {
+            str += node + ": ";
+            for (T child : this.getChildren(node))
+                str += child + " ";
+            str += "\n";
+        }
+        return str;
+    }
 }

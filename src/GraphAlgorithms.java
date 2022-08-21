@@ -67,6 +67,110 @@ public class GraphAlgorithms
                 dfsHelper(graph, neighbor, visited);
     }
 
+    /**
+     * Reverses all the edges of a given directed graph
+     * @param graph A directed graph
+     * @return      The given directed graph with the edges reversed
+     * @param <T>
+     */
+    public static <T extends Comparable<T>> Graph<T> reverse(Graph<T> graph)
+    {
+        Graph<T> reverse = new Graph<T>(false);
+        for (T node : graph.getNodes())
+            reverse.addNode(node);
+        for (T node : graph.getNodes())
+            for (T child : graph.getChildren(node))
+                reverse.addEdge(child, node);
+        return reverse;
+    }
+
+    /**
+     * Kosaraju's Algorithm for Strongly Connected Components
+     *
+     * The time complexity is O(V+E), where V is the number of vertices and E is the
+     * number of edges in the graph.
+     *
+     * Reference: https://www.topcoder.com/thrive/articles/kosarajus-algorithm-for-strongly-connected-components
+     *
+     * @param graph A directed graph
+     * @return      A list of the strongly connected components (which are stored as sets of nodes)
+     * @param <T>
+     */
+    public static <T extends Comparable<T>> List<Set<T>> kosaraju(Graph<T> graph)
+    {
+        Map<T, Boolean> visited = new HashMap<T, Boolean>();
+        for (T node : graph.getNodes())
+            visited.put(node, false);
+
+        Stack<T> stack = new Stack<T>();
+        for (T node : graph.getNodes())
+            if (!visited.get(node))
+            {
+                Set<T> dfsResult = GraphAlgorithms.modifiedDFSForKosaraju(graph, node, stack);
+                for (T resultNode : dfsResult)
+                    visited.put(resultNode, true);
+            }
+
+        for (T node : graph.getNodes())
+            visited.put(node, false);
+
+        Graph<T> reverseGraph = GraphAlgorithms.reverse(graph);
+        List<Set<T>> components = new LinkedList<Set<T>>();
+        while (!stack.isEmpty())
+        {
+            T topNode = stack.pop();
+            if (!visited.get(topNode))
+            {
+                Set<T> dfsResult = GraphAlgorithms.modifiedDFSForKosaraju2(reverseGraph, topNode, visited);
+                components.add(dfsResult);
+
+                for (T resultNode : dfsResult)
+                    visited.put(resultNode, true);
+            }
+        }
+
+        return components;
+    }
+
+    public static <T extends Comparable<T>> Set<T> modifiedDFSForKosaraju(Graph<T> graph, T sourceNode, Stack<T> stack)
+    {
+        Set<T> visited = new HashSet<T>();
+        GraphAlgorithms.modifiedDFSHelperForKosaraju(graph, sourceNode, visited, stack);
+        return visited;
+    }
+
+    private static <T extends Comparable<T>> void modifiedDFSHelperForKosaraju(Graph<T> graph, T node, Set<T> visited, Stack<T> stack)
+    {
+        // Mark the current node as visited
+        visited.add(node);
+
+        // Recur for all the vertices adjacent to this vertex
+        for (T neighbor : graph.getChildren(node))
+            if (!visited.contains(neighbor))
+                GraphAlgorithms.modifiedDFSHelperForKosaraju(graph, neighbor, visited, stack);
+
+        stack.push(node);
+    }
+
+    public static <T extends Comparable<T>> Set<T> modifiedDFSForKosaraju2(Graph<T> graph, T sourceNode, Map<T, Boolean> visited)
+    {
+        Set<T> component = new HashSet<T>();
+        GraphAlgorithms.modifiedDFSHelperForKosaraju2(graph, sourceNode, visited, component);
+        return component;
+    }
+
+    private static <T extends Comparable<T>> void modifiedDFSHelperForKosaraju2(Graph<T> graph, T node, Map<T, Boolean> visited, Set<T> component)
+    {
+        // Mark the current node as visited
+        component.add(node);
+        visited.put(node, true);
+
+        // Recur for all the vertices adjacent to this vertex
+        for (T neighbor : graph.getChildren(node))
+            if (!visited.get(neighbor) && !component.contains(neighbor))
+                GraphAlgorithms.modifiedDFSHelperForKosaraju2(graph, neighbor, visited, component);
+    }
+
     public static void main(String[] args)
     {
         Graph<Character> graph = new Graph<Character>(true);
@@ -83,5 +187,19 @@ public class GraphAlgorithms
             System.out.println(node + ": " + distances.get(node));
         System.out.println("DFS from node S: " + dfs(graph, 'S'));
         System.out.println("DFS from node F: " + dfs(graph, 'F'));
+
+        Graph<Character> directedGraph = new Graph<Character>(false);
+        for (char node : nodes)
+            directedGraph.addNode(node);
+        directedGraph.addEdge('S', 'A');
+        directedGraph.addEdge('S', 'C');
+        directedGraph.addEdge('S', 'D');
+        directedGraph.addEdge('S', 'E');
+        directedGraph.addEdge('A', 'B');
+        directedGraph.addEdge('B', 'S');
+        List<Set<Character>> stronglyConnectedComponents = GraphAlgorithms.kosaraju(directedGraph);
+        int counter = 1;
+        for (Set<Character> component : stronglyConnectedComponents)
+            System.out.println("SCC " + (counter++) + ": " + component);
     }
 }
