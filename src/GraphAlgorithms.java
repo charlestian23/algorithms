@@ -179,8 +179,8 @@ public class GraphAlgorithms
      *
      * References: Personal college lecture notes and https://www.geeksforgeeks.org/topological-sorting/
      *
-     * @param graph
-     * @return
+     * @param graph A directed graph
+     * @return      A stack whose order is the topological order of the graph
      * @param <T>
      */
     public static <T extends Comparable<T>> Stack<T> topologicalSort(Graph<T> graph)
