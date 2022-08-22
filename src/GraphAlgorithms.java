@@ -171,6 +171,42 @@ public class GraphAlgorithms
                 GraphAlgorithms.modifiedDFSHelperForKosaraju2(graph, neighbor, visited, component);
     }
 
+    /**
+     * Topological Sort
+     *
+     * The time complexity is O(V+E), where V is the number of vertices and E is the
+     * number of edges in the graph.
+     *
+     * References: Personal college lecture notes and https://www.geeksforgeeks.org/topological-sorting/
+     *
+     * @param graph
+     * @return
+     * @param <T>
+     */
+    public static <T extends Comparable<T>> Stack<T> topologicalSort(Graph<T> graph)
+    {
+        Map<T, Boolean> visited = new HashMap<T, Boolean>();
+        for (T node : graph.getNodes())
+            visited.put(node, false);
+
+        Stack<T> stack = new Stack<T>();
+        for (T node : graph.getNodes())
+            if (!visited.get(node))
+                GraphAlgorithms.topologicalSortHelper(graph, node, visited, stack);
+
+        return stack;
+    }
+
+    public static <T extends Comparable<T>> void topologicalSortHelper(Graph<T> graph, T vertex, Map<T, Boolean> visited, Stack<T> stack)
+    {
+        visited.put(vertex, true);
+
+        for (T child : graph.getChildren(vertex))
+            if (!visited.get(child))
+                topologicalSortHelper(graph, child, visited, stack);
+        stack.push(vertex);
+    }
+
     public static void main(String[] args)
     {
         Graph<Character> graph = new Graph<Character>(true);
@@ -201,5 +237,17 @@ public class GraphAlgorithms
         int counter = 1;
         for (Set<Character> component : stronglyConnectedComponents)
             System.out.println("SCC " + (counter++) + ": " + component);
+
+        Graph<Integer> topologicalSortTest = new Graph<Integer>(false);
+        for (int i = 0; i < 6; i++)
+            topologicalSortTest.addNode(i);
+        topologicalSortTest.addEdge(5, 0);
+        topologicalSortTest.addEdge(4, 0);
+        topologicalSortTest.addEdge(4, 1);
+        topologicalSortTest.addEdge(3, 1);
+        topologicalSortTest.addEdge(2, 3);
+        topologicalSortTest.addEdge(5, 2);
+        Stack<Integer> stack = GraphAlgorithms.topologicalSort(topologicalSortTest);
+        System.out.println("Topologically Sorted: " + stack);
     }
 }
